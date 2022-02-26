@@ -115,7 +115,9 @@ Install dependecies via `npm` or `yarn`
 
 ## Roadmap
 
-- [ ] Add translations
+- [x] Add translations
+- [ ] Add test
+- [ ] Add lazy image component
 
 See the [open issues](https://github.com/batuhanyndny/one-boilerplate/issues) for a full list of proposed features (and known issues).
 

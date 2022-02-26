@@ -2,6 +2,7 @@ export const ENVIRONMENT = {
 	PROJECT_ID: process.env.PROJECT_ID ?? 'Not Defined',
 	API_BASE_URI: process.env.API_BASE_URI ?? 'Not Defined',
 	ENV: process.env.ENV ?? 'Not Defined',
+	APP_VERSION: process.env.APP_VERSION ?? 'Not Defined',
 };
 export const PRODUCTION = 'production';
 export const DEVELOPMENT = 'development';

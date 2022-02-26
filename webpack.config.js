@@ -14,12 +14,19 @@ const config = {
 		publicPath: '/',
 	},
 	devServer: {
+		historyApiFallback: true,
 		open: true,
 		host: 'localhost',
-		setupMiddlewares: (middlewares, devServer) => {
-			devServer.app.use('/', express.static(path.resolve(__dirname, 'public')));
-			return middlewares;
-		},
+		static: [
+			{
+				directory: path.join(__dirname, 'public'),
+				publicPath: '/',
+			},
+			{
+				directory: path.join(__dirname, 'app/translations'),
+				publicPath: '/translations',
+			},
+		],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -30,11 +37,6 @@ const config = {
 			path: './.env', // Path to .env file (this is the default)
 			safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
 		}),
-		new CopyPlugin({
-			patterns: [{ from: path.join(process.cwd(), 'public/meta.json'), to: './' }],
-		}),
-		// Add your plugins here
-		// Learn more about plugins from https://webpack.js.org/configuration/plugins/
 	],
 	module: {
 		rules: [
@@ -64,9 +66,6 @@ const config = {
 			'@public': path.resolve(__dirname, './public/'),
 		},
 	},
-	devServer: {
-		historyApiFallback: true,
-	},
 };
 
 module.exports = () => {
@@ -74,8 +73,21 @@ module.exports = () => {
 		config.mode = 'production';
 
 		config.plugins.push(new MiniCssExtractPlugin());
+		config.plugins.push(
+			new CopyPlugin({
+				patterns: [
+					{ from: path.join(process.cwd(), 'app/translations'), to: 'translations' },
+					{ from: path.join(process.cwd(), 'public/meta.json'), to: './' },
+				],
+			}),
+		);
 	} else {
 		config.mode = 'development';
+		config.plugins.push(
+			new CopyPlugin({
+				patterns: [{ from: path.join(process.cwd(), 'public/meta.json'), to: './' }],
+			}),
+		);
 	}
 	return config;
 };
