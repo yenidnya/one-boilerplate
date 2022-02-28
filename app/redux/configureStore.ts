@@ -51,6 +51,7 @@ export default function configureStore(initialState: IGlobalState | {} = {}, his
 	store.injectedReducers = {}; // Reducer registry
 	store.injectedSagas = {}; // Saga registry
 
+	/* istanbul ignore next line */
 	if (module.hot) {
 		module.hot.accept('./reducers', () => {
 			forceReducerReload(store);

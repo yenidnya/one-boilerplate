@@ -7,8 +7,8 @@ import { SettingsReducer } from './settings.reducer';
 import SettingsModuleSaga from './settings.saga';
 
 const Settings: NamedExoticComponent = memo(() => {
-	useInjectSaga({ key: "SETTINGS", saga: SettingsModuleSaga });
-	useInjectReducer({ key: "SETTINGS", reducer: SettingsReducer });
+	useInjectSaga({ key: 'SETTINGS', saga: SettingsModuleSaga });
+	useInjectReducer({ key: 'SETTINGS', reducer: SettingsReducer });
 
 	const { color } = useSelectedState('SETTINGS') ?? {};
 	const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Settings: NamedExoticComponent = memo(() => {
 
 	return (
 		<div>
-			Settings
+			<h1>Settings</h1>
 			<br />
 			color: {color}
 			<br />

@@ -2,10 +2,10 @@ import { APP_ACTION_TYPES, ICloseNotification, IFetchVersionNumberAction, ISetNo
 import semverGreaterThan from '@app/helpers/versionChecker';
 import { GenericActionCreator, serviceWrapperSaga } from '@app/redux/utils';
 import { getVersionNumber } from '@app/services/services';
-import { ForkEffect, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import { ForkEffect, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
-function* FetchVersionNumber(action: IFetchVersionNumberAction) {
+export function* FetchVersionNumber(action: IFetchVersionNumberAction) {
 	try {
 		const metaJson: { data: { version: string } } = yield serviceWrapperSaga(getVersionNumber);
 		const latestVersion: string = metaJson.data.version;
@@ -29,7 +29,7 @@ function* FetchVersionNumber(action: IFetchVersionNumberAction) {
 			yield put(
 				GenericActionCreator<ISetVersionStatusAction>({
 					type: APP_ACTION_TYPES.SET_VERSION_STATUS,
-					data: { loading: false, isLatestVersion: false },
+					data: false,
 				}),
 			);
 		} else {
@@ -37,16 +37,21 @@ function* FetchVersionNumber(action: IFetchVersionNumberAction) {
 			yield put(
 				GenericActionCreator<ISetVersionStatusAction>({
 					type: APP_ACTION_TYPES.SET_VERSION_STATUS,
-					data: { loading: false, isLatestVersion: true },
+					data: true,
 				}),
 			);
 		}
 	} catch (e) {
-		console.log('e', e);
+		yield put(
+			GenericActionCreator<ISetVersionStatusAction>({
+				type: APP_ACTION_TYPES.SET_VERSION_STATUS,
+				data: undefined,
+			}),
+		);
 	}
 }
 
-function* SetNotificationSaga(action: ISetNotification) {
+export function* SetNotificationSaga(action: ISetNotification) {
 	try {
 		yield toast(action.data.message, {
 			type: action.data.type,
@@ -56,7 +61,7 @@ function* SetNotificationSaga(action: ISetNotification) {
 	} catch (e) {}
 }
 
-function* CloseNotificationSaga(action: ICloseNotification) {
+export function* CloseNotificationSaga(action: ICloseNotification) {
 	try {
 		yield toast.dismiss(action.data);
 	} catch (e) {}

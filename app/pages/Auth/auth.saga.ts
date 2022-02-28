@@ -5,21 +5,19 @@ import { signInService } from '@app/services/services';
 import { put, takeLatest } from 'redux-saga/effects';
 import { IAuthResponse } from '@app/pages/Auth/auth';
 
-function* LoginSaga(action: IGetLoginAction) {
+export function* LoginSaga(action: IGetLoginAction) {
 	const { data } = action;
 	try {
 		const LoginUserData: IAuthResponse = yield serviceWrapperSaga(signInService, data);
 
-		if (LoginUserData) {
-			localStorage.setItem(ENVIRONMENT.PROJECT_ID, JSON.stringify(LoginUserData));
+		localStorage.setItem(ENVIRONMENT.PROJECT_ID, JSON.stringify(LoginUserData));
 
-			yield put(
-				GenericActionCreator<ISetLoginAction>({
-					type: LOGIN_ACTION_TYPES.SET_LOGIN,
-					data: { ...LoginUserData, loggedIn: true },
-				}),
-			);
-		}
+		yield put(
+			GenericActionCreator<ISetLoginAction>({
+				type: LOGIN_ACTION_TYPES.SET_LOGIN,
+				data: { ...LoginUserData, loggedIn: true },
+			}),
+		);
 	} catch (e) {
 		yield put(GenericActionCreator<IGetLoginFailedAction>({ type: LOGIN_ACTION_TYPES.GET_LOGIN_FAILED }));
 	}

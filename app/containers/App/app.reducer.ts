@@ -11,7 +11,7 @@ const AppReducer = (state: Readonly<IAppState> = initialState, action: AppAction
 		case APP_ACTION_TYPES.SET_VERSION_STATUS:
 			return {
 				...state,
-				...action.data,
+				isLatestVersion: action.data,
 			};
 		case APP_ACTION_TYPES.RESET_APP_STATE:
 			return { ...initialState };

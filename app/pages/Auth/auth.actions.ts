@@ -1,4 +1,5 @@
 import { ILoginForm, IAuthState } from '@app/pages/Auth/auth';
+import { INoopAction } from '@app/shared/types';
 
 export enum LOGIN_ACTION_TYPES {
 	GET_LOGIN = '[Login] Get Login',
@@ -20,4 +21,4 @@ export interface ISetLoginAction {
 	data: IAuthState;
 }
 
-export type LoginActions = IGetLoginAction | ISetLoginAction | IGetLoginFailedAction;
+export type LoginActions = INoopAction | IGetLoginAction | ISetLoginAction | IGetLoginFailedAction;

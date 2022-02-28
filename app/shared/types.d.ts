@@ -7,3 +7,8 @@ export interface IApiErrorSchema {
 	error: string; // error slug
 	message: string; // error message
 }
+
+export interface INoopAction {
+	type: 'NOOP';
+	data: any;
+}

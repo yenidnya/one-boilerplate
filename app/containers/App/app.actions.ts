@@ -1,4 +1,5 @@
-import { IAppState, INotification } from '@app/containers/App/app';
+import { INotification } from '@app/containers/App/app';
+import { INoopAction } from '@app/shared/types';
 
 export enum APP_ACTION_TYPES {
 	SET_VERSION_STATUS = `[App] Set Version Status`,
@@ -10,7 +11,7 @@ export enum APP_ACTION_TYPES {
 
 export interface ISetVersionStatusAction {
 	type: APP_ACTION_TYPES.SET_VERSION_STATUS;
-	data: IAppState;
+	data: boolean | undefined;
 }
 
 export interface IFetchVersionNumberAction {
@@ -32,4 +33,4 @@ export interface ICloseNotification {
 	data: string;
 }
 
-export type AppActions = ISetVersionStatusAction | IFetchVersionNumberAction | IResetAppStateAction | ISetNotification | ICloseNotification;
+export type AppActions = INoopAction | ISetVersionStatusAction | IFetchVersionNumberAction | IResetAppStateAction | ISetNotification | ICloseNotification;

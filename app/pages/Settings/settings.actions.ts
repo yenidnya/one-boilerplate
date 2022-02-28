@@ -1,3 +1,4 @@
+import { INoopAction } from '@app/shared/types';
 import { ISettingsState } from './settings';
 
 export enum SETTINGS_ACTION_TYPES {
@@ -14,4 +15,4 @@ export interface ISetSettingsAction {
 	data: Partial<ISettingsState>;
 }
 
-export type SettingsActions = IGetSettingsAction | ISetSettingsAction;
+export type SettingsActions = INoopAction | IGetSettingsAction | ISetSettingsAction;

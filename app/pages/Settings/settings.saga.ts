@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { ISettingsState } from './settings';
 import { ISetSettingsAction, SETTINGS_ACTION_TYPES } from './settings.actions';
 
-function* GetSettings() {
+export function* GetSettings() {
 	try {
 		const response: ISettingsState = yield serviceWrapperSaga(getSettings);
 		yield put(
