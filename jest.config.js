@@ -35,6 +35,7 @@ module.exports = {
 	setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', '<rootDir>/mocks/localStorage.ts'],
 	moduleNameMapper: {
 		'react-i18next': '<rootDir>/mocks/react-i18n.ts',
+		'\\.svg$': '<rootDir>/mocks/svg.ts',
 		'^@app(.*)$': '<rootDir>/app$1',
 	},
 	testRegex: '__tests__/.*\\.test\\.(js|ts(x?))$',

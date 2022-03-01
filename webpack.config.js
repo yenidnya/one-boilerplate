@@ -26,6 +26,10 @@ const config = {
 				directory: path.join(__dirname, 'app/translations'),
 				publicPath: '/translations',
 			},
+			{
+				directory: path.join(__dirname, 'app/assets'),
+				publicPath: '/assets',
+			},
 		],
 	},
 	plugins: [
@@ -54,8 +58,12 @@ const config = {
 				use: [stylesHandler, 'css-loader', 'postcss-loader'],
 			},
 			{
-				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+				test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
 				type: 'asset',
+			},
+			{
+				test: /\.svg$/,
+				use: ['@svgr/webpack'],
 			},
 		],
 	},
@@ -78,6 +86,7 @@ module.exports = () => {
 				patterns: [
 					{ from: path.join(process.cwd(), 'app/translations'), to: 'translations' },
 					{ from: path.join(process.cwd(), 'public/meta.json'), to: './' },
+					{ from: path.join(process.cwd(), 'app/assets'), to: 'assets' },
 				],
 			}),
 		);

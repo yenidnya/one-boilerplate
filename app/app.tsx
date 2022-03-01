@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import App from '@app/containers/App';
 import { i18nInit } from './i18n';
 import 'react-toastify/dist/ReactToastify.css';
-import './global.scss';
+import '@app/global.scss';
 
 const initialState = {};
 const store = configureStore(initialState, history);

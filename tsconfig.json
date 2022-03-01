@@ -33,6 +33,7 @@
 		},
 	},
 	"include": [
+		"app/types/**/*",
 		"app/**/*.tsx",
 		"app/**/*.ts",
 	],
