@@ -6,8 +6,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import App from '@app/containers/App';
-import 'react-toastify/dist/ReactToastify.css';
 import { i18nInit } from './i18n';
+import 'react-toastify/dist/ReactToastify.css';
+import './global.scss';
 
 const initialState = {};
 const store = configureStore(initialState, history);
