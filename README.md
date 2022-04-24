@@ -55,6 +55,8 @@
 
 One Boilerplate is a react boilerplate that includes state management, code splitting, service architecture, and more.
 
+You can checkout [this](https://github.com/batuhanyndny/one-boilerplate/tree/old-redux-saga) branch for old redux-saga implementation
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
