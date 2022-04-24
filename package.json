@@ -6,10 +6,8 @@
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "build:clean": "rimraf ./dist",
-    "prebuild": "yarn build:clean && yarn test && yarn generate-build-version",
-    "generate-build-version": "node generate-build-version",
+    "prebuild": "yarn build:clean && yarn test",
     "start": "webpack serve",
-    "prestart": "yarn generate-build-version",
     "clean:setup": "rimraf node_modules dist yarn.lock && yarn",
     "test": "jest",
     "test:coverage": "jest --coverage",

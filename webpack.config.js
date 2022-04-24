@@ -10,6 +10,7 @@ const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader
 const config = {
 	entry: './app/app.tsx',
 	output: {
+		filename: '[name].[contenthash].js',
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
 	},
@@ -85,18 +86,12 @@ module.exports = () => {
 			new CopyPlugin({
 				patterns: [
 					{ from: path.join(process.cwd(), 'app/translations'), to: 'translations' },
-					{ from: path.join(process.cwd(), 'public/meta.json'), to: './' },
 					{ from: path.join(process.cwd(), 'app/assets'), to: 'assets' },
 				],
 			}),
 		);
 	} else {
 		config.mode = 'development';
-		config.plugins.push(
-			new CopyPlugin({
-				patterns: [{ from: path.join(process.cwd(), 'public/meta.json'), to: './' }],
-			}),
-		);
 	}
 	return config;
 };
